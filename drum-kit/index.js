@@ -71,6 +71,9 @@
       keysContainer.append(container);
     });
 
+    keysContainer.addEventListener("transitionend", (e) => {
+      e.target.classList.remove("playing");
+    });
     appContainer.append(keysContainer);
   }
 
@@ -81,9 +84,6 @@
 
     const audio = new Audio(
       data.find((keyObj) => keyObj.key === e.key).audioUrl
-    );
-    audio.addEventListener("ended", () =>
-      keyContainer.classList.remove("playing")
     );
     audio.play();
   });
